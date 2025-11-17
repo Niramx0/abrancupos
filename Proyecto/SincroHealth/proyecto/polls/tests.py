@@ -7,6 +7,8 @@ from .models import (
     CitaMedica, RecetaMedica, HistorialMedico
 )
 # TEST 01 — Crear paciente
+
+
 class Test01_Crearpaciente(TestCase):
     def test_crear_paciente(self):
         # Caso Normal
@@ -22,10 +24,10 @@ class Test01_Crearpaciente(TestCase):
         paciente1.full_clean()
         paciente1.save()
 
-        # Caso Límite Válido 
+        # Caso Límite Válido
         paciente2 = Paciente(
             idpaciente=2,
-            contrasena="Aa1!!", 
+            contrasena="Aa1!!",
             nombre="Lu",
             apellidos="Ro",
             direccion="A",
@@ -37,7 +39,7 @@ class Test01_Crearpaciente(TestCase):
         # Caso Límite Inválido
         paciente3 = Paciente(
             idpaciente=3,
-            contrasena="A12!", 
+            contrasena="A12!",
             nombre="Ana",
             apellidos="Gomez",
             direccion="X",
@@ -46,8 +48,9 @@ class Test01_Crearpaciente(TestCase):
         )
         with self.assertRaises(ValidationError):
             paciente3.full_clean()
-            
 # TEST 02 — Crear Médico
+
+
 class Test02_CrearMedico(TestCase):
     def test_crear_medico(self):
         # Caso Normal
@@ -63,7 +66,7 @@ class Test02_CrearMedico(TestCase):
         medico1.full_clean()
         medico1.save()
 
-        #Caso Limite Valido
+        # Caso Limite Valido
         medico2 = Medico(
             idmedico=11,
             contrasena="Aa1!!",
@@ -75,20 +78,21 @@ class Test02_CrearMedico(TestCase):
         )
         medico2.full_clean()
 
-        #Caso Limite Invalido
+        # Caso Limite Invalido
         medico3 = Medico(
             idmedico=12,
             contrasena="Abc12!",
             nombre="Lu",
             apellidos="Ro",
-            especialidad="A",    
+            especialidad="A",
             correo_electronico="c@gmaigmail.com",
             telefono=222
         )
         with self.assertRaises(ValidationError):
             medico3.full_clean()
-
 # TEST 03 — Crear Administrador
+
+
 class Test03_CrearAdministrador(TestCase):
     def test_crear_admin(self):
         # Caso Normal
@@ -104,11 +108,11 @@ class Test03_CrearAdministrador(TestCase):
         admin1.full_clean()
         admin1.save()
 
-        #Caso Limite Valido
+        # Caso Limite Valido
         user2 = User.objects.create(username="admin2")
         admin2 = Administrador(
             idadministradores=user2,
-            contraseña="A"*25,
+            contraseña="A" * 25,
             nombre="Sa",
             apellidos="pe",
             correo_electronico="x@gmaigmail.com",
@@ -116,11 +120,11 @@ class Test03_CrearAdministrador(TestCase):
         )
         admin2.full_clean()
 
-        #Caso Limite Invalido
+        # Caso Limite Invalido
         user3 = User.objects.create(username="admin3")
         admin3 = Administrador(
             idadministradores=user3,
-            contraseña="a"*26,
+            contraseña="a" * 26,
             nombre="Lu",
             apellidos="Ro",
             correo_electronico="l@gmaigmail.com",
@@ -128,8 +132,9 @@ class Test03_CrearAdministrador(TestCase):
         )
         with self.assertRaises(ValidationError):
             admin3.full_clean()
-
 #  TEST 04 — Crear Cita Médica
+
+
 class Test04_CrearCita(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -158,7 +163,7 @@ class Test04_CrearCita(TestCase):
         cita1.full_clean()
         cita1.save()
 
-        #Caso Limite Valido
+        # Caso Limite Valido
         cita2 = CitaMedica(
             idpaciente=self.paciente1,
             idmedico=self.medico,
@@ -168,7 +173,7 @@ class Test04_CrearCita(TestCase):
         )
         cita2.full_clean()
 
-        #Caso Limite Invalido
+        # Caso Limite Invalido
         cita3 = CitaMedica(
             idpaciente=self.paciente1,
             idmedico=self.medico,
@@ -178,8 +183,9 @@ class Test04_CrearCita(TestCase):
         )
         with self.assertRaises(ValidationError):
             cita3.full_clean()
-
 #  TEST 05 — Cancelar Cita Médica
+
+
 class Test05_CancelarCita(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -211,16 +217,17 @@ class Test05_CancelarCita(TestCase):
         cita.save()
         self.assertEqual(cita.estado_cita, "Cancelada")
 
-        #Caso Limite Valido
+        # Caso Limite Valido
         cita.estado_cita = "Cancelada"
         cita.full_clean()
 
-        #Caso Limite Invalido
+        # Caso Limite Invalido
         cita.estado_cita = "XYZ"
         with self.assertRaises(ValidationError):
             cita.full_clean()
-
 #  TEST 06 — Reprogramar Cita
+
+
 class Test06_ReprogramarCita(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -252,17 +259,18 @@ class Test06_ReprogramarCita(TestCase):
         self.cita.full_clean()
         self.cita.save()
 
-        #Caso Limite Valido
+        # Caso Limite Valido
         self.cita.fecha = date.today() + timedelta(days=1)
         self.cita.hora = "23:59"
         self.cita.full_clean()
 
-        #Caso Limite Invalido
+        # Caso Limite Invalido
         self.cita.hora = "11AM"
         with self.assertRaises(ValidationError):
             self.cita.full_clean()
-            
 #  TEST 07 — Confirmar Cita Médica
+
+
 class Test07_ConfirmarCita(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -301,8 +309,9 @@ class Test07_ConfirmarCita(TestCase):
         cita.estado_cita = "XYZ"
         with self.assertRaises(ValidationError):
             cita.full_clean()
-
 # TEST 08 — Crear Receta actualiza Historial
+
+
 class Test08_RecetaCreaHistorial(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -360,8 +369,9 @@ class Test08_RecetaCreaHistorial(TestCase):
         )
         with self.assertRaises(ValidationError):
             receta3.full_clean()
-
 #  TEST 09 — Actualizar historial al agregar receta
+
+
 class Test09_HistorialAgregaReceta(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -417,8 +427,9 @@ class Test09_HistorialAgregaReceta(TestCase):
         )
         with self.assertRaises(ValidationError):
             receta3.full_clean()
-
 #  TEST 10 — Actualizar historial al eliminar receta
+
+
 class Test10_HistorialEliminaReceta(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -462,8 +473,9 @@ class Test10_HistorialEliminaReceta(TestCase):
         # Caso Límite inválido
         with self.assertRaises(RecetaMedica.DoesNotExist):
             RecetaMedica.objects.get(idrecetas_medicas=9999)
-
 #  TEST 11 — Eliminar Historial Médico
+
+
 class Test11_EliminarHistorial(TestCase):
     def setUp(self):
         self.paciente1 = Paciente.objects.create(
@@ -487,8 +499,9 @@ class Test11_EliminarHistorial(TestCase):
         # Caso Limite Invalido
         with self.assertRaises(HistorialMedico.DoesNotExist):
             HistorialMedico.objects.get(idpaciente_id=99234).delete()
-        
 #  TEST 12 — Eliminar paciente Eliminar Información
+
+
 class Test12_Eliminarpaciente(TestCase):
     def test_eliminar_paciente(self):
         # Caso Normal
@@ -504,7 +517,7 @@ class Test12_Eliminarpaciente(TestCase):
             HistorialMedico.objects.filter(idpaciente=paciente1.idpaciente).exists()
         )
 
-        #Caso Limite Valido: paciente sin historial
+        # Caso Limite Valido: paciente sin historial
         paciente2 = Paciente.objects.create(
             idpaciente=8001, contrasena="Abc12!",
             nombre="Lu", apellidos="pe",
@@ -513,6 +526,6 @@ class Test12_Eliminarpaciente(TestCase):
         )
         paciente2.delete()  # no debe fallar
 
-        #Caso Limite Invalido: eliminar paciente inexistente
+        # Caso Limite Invalido: eliminar paciente inexistente
         with self.assertRaises(Paciente.DoesNotExist):
             Paciente.objects.get(idpaciente=959391)
