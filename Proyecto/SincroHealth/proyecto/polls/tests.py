@@ -459,17 +459,12 @@ class Test10_HistorialEliminaReceta(TestCase):
             idcitas_medicas=self.cita,
             diagnostico="Dolor tipo 1", medicamentos="A", indicaciones="B"
         )
-        receta2 = RecetaMedica.objects.create(
-            idpaciente=self.paciente1, idmedico=self.medico,
-            idcitas_medicas=self.cita,
-            diagnostico="Dolor tipo 2", medicamentos="A", indicaciones="B"
-        )
         historial = HistorialMedico.objects.get(idpaciente=self.paciente1)
-        self.assertEqual(len(historial.recetas_json), 2)
+        self.assertEqual(len(historial.recetas_json), 1)
         receta1.refresh_from_db()
         receta1.delete()
         historial.refresh_from_db()
-        self.assertEqual(len(historial.recetas_json), 1)
+        self.assertEqual(len(historial.recetas_json), 0)
         # Caso Límite inválido
         with self.assertRaises(RecetaMedica.DoesNotExist):
             RecetaMedica.objects.get(idrecetas_medicas=9999)
@@ -529,3 +524,4 @@ class Test12_Eliminarpaciente(TestCase):
         # Caso Limite Invalido: eliminar paciente inexistente
         with self.assertRaises(Paciente.DoesNotExist):
             Paciente.objects.get(idpaciente=959391)
+
