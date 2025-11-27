@@ -34,7 +34,7 @@ def horario_medico(request,idmedico):
         dias[dia] = []
     for cita in citas_semana:
         dias[cita.fecha].append(cita)
-    return render(request, "polls/horario_medico.html", {
+    return render(request, "citas/horario_medico.html", {
         "medico": medico,
         "dias":dias,
         "lunes":lunes,
@@ -101,3 +101,4 @@ def historial_pdf(request, idpaciente):
     p.save()
 
     return response
+
