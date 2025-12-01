@@ -1,0 +1,46 @@
+{% extends "HomeMedicos.html" %}
+{% load static %}
+
+{% block title %}Recetas Médicas{% endblock %}
+
+{% block volver %}
+<a href="{% url 'homemedicos' %}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/RecetasMedicos.css' %}">
+
+<h1 class="titulo-seccion">Historial de Recetas</h1>
+
+<div class="tabla-container">
+    <table class="tabla-medicos">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Especialidad</th>
+                <th>Paciente</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for receta in recetas %}
+            <tr>
+                <td>{{ receta.idcitas_medicas.fecha }}</td>
+                <td>{{ receta.idcitas_medicas.especialidad }}</td>
+                <td>{{ receta.idpaciente.nombre }} {{ receta.idpaciente.apellidos }}</td>
+
+                <td>
+                    <a href="{% url 'ver_receta_medico' receta.idrecetas_medicas %}?volver={% url 'recetas_medico' %}" class="btn-ver">Ver</a>
+                </td>
+
+                <td>
+                    <a href="{% url 'descargar_receta' receta.idrecetas_medicas %}" class="btn-ver">Descargar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+

@@ -1,0 +1,46 @@
+{% extends "HomeMedicos.html" %}
+{% load static %}
+
+{% block title %}Pacientes del Médico{% endblock %}
+
+{% block volver %}
+<a href="{% url 'homemedicos' %}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/RecetasMedicos.css' %}">
+
+<h1 class="titulo-seccion">Pacientes Atendidos</h1>
+
+<div class="tabla-container">
+    <table class="tabla-medicos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Historial</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in pacientes %}
+            <tr>
+                <td>{{ paciente.nombre }}</td>
+                <td>{{ paciente.apellidos }}</td>
+                <td>{{ paciente.correo_electronico }}</td>
+                <td>{{ paciente.telefono }}</td>
+
+                <td>
+                    <a href="{% url 'historial_paciente_medico' paciente.idpaciente %}?volver={% url 'pacientes_medico' %}"
+                       class="btn-ver">Ver</a>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+

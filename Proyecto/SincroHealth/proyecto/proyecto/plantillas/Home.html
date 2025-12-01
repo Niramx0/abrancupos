@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SincroHealth - Inicio</title>
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
+</head>
+<body>
+
+    <header class="header-container">
+        <a href="{% url 'home' %}" class="header-link">
+            <div class="header-content-wrapper">
+                <div class="logo-box">
+                    <img src="{% static 'img/logo.png' %}" alt="SincroHealth Logo">
+                </div>
+        </a>
+                <div class="header-info">
+                    <h1>SincroHealth</h1>
+                    <p>Institución Prestatoria de Servicios de Salud</p>
+                </div>
+            </div>
+    </header>
+
+    <nav class="nav-bar-wrapper">
+        <div class="nav-bar">
+            <a href="{% url 'loginpacientes' %}" class="nav-button">Pacientes</a>
+            <a href="{% url 'loginmedicos' %}" class="nav-button">Médicos</a>
+            <a href="/admin/" class="nav-button">Administradores</a>
+            <a href="{% url 'contactanos' %}" class="nav-button">Contáctanos</a>
+        </div>
+    </nav>
+    {% block content %}
+    <main class="content-container">
+        
+        <div class="info-scroller">
+            <section class="info-box">
+                <h2>Misión y Visión </h2>
+                <div class="text-placeholder">
+                    <p>
+                        <h3>Nuestra Misión</h3>
+                        Proveer servicios de salud integrales, oportunos y humanizados, articulando el conocimiento científico más avanzado con un enfoque centrado en el paciente.
+                    
+                        <h3>Nuestra Visión</h3>
+                        Ser la IPS líder y referente a nivel nacional, reconocida por la excelencia en la calidad de la atención, la implementación de tecnologías de vanguardia y nuestro modelo de gestión ético y sostenible. 
+                    </p>
+                </div>
+            </section>
+            
+            <section class="info-box">
+                <h2>Especialidades</h2>
+                <div class="text-placeholder">
+                    <p>
+                        SincroHealth cuenta con un equipo de médicos especialistas dedicados a la atención integral de tu salud en diversas áreas.
+                    </p>
+
+                    <ul>
+                        <li><strong>Medicina Interna:</strong> Diagnóstico y tratamiento de enfermedades complejas en adultos.</li>
+                        <li><strong>Pediatría:</strong> Cuidado especializado de la salud de niños y adolescentes.</li>
+                        <li><strong>Ginecología y Obstetricia:</strong> Atención integral para la salud femenina y el embarazo.</li>
+                        <li><strong>Cardiología:</strong> Prevención, diagnóstico y tratamiento de enfermedades del corazón.</li>
+                        <li><strong>Dermatología:</strong> Cuidado y tratamiento de la piel, cabello y uñas.</li>
+                        <li><strong>Psicología Clínica:</strong> Soporte y terapia para el bienestar mental y emocional.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="info-box extra-box">
+                <h2>Servicios</h2>
+                <div class="text-placeholder">
+                    <p>
+                        Ofrecemos servicios de apoyo esenciales con tecnología de punta para garantizar diagnósticos precisos y una recuperación efectiva.
+                    </p>
+
+                    <ul>
+                        <li><strong>Laboratorio Clínico:</strong> Toma y análisis de muestras con resultados rápidos y confiables.</li>
+                        <li><strong>Imagenología:</strong> Radiología, Ecografía y Densitometría para diagnóstico por imágenes.</li>
+                        <li><strong>Fisioterapia y Rehabilitación:</strong> Programas personalizados de recuperación funcional.</li>
+                        <li><strong>Consulta Externa General:</strong> Atención primaria y chequeos de salud.</li>
+                        <li><strong>Odontología Integral:</strong> Prevención, diagnóstico y tratamiento completo de la salud oral.</li>
+                        <li><strong>Nutrición y Dietética:</strong> Asesoría para el manejo de enfermedades y hábitos alimenticios.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="info-box extra-box">
+                <h2>Ubicación</h2>
+                <div class="text-placeholder">
+                    <p>
+                        En SincroHealth, nuestra red de sedes estratégicamente ubicadas en Bogotá garantiza que siempre tengas atención de calidad cerca de ti.
+                    </p>
+
+                    <h3>Sede Principal y Administrativa</h3>
+                    <ul>
+                        <li>
+                            <strong>Sede Chapinero (Principal):</strong> Aquí se concentra nuestra gestión administrativa y los servicios de alta especialidad.
+                            <br>
+                            **Dirección:** Carrera 7 \# 67A - 45, Edificio Sincro.
+                        </li>
+                    </ul>
+
+                    <h3>Otras Sedes</h3>
+                    <ul>
+                        <li>
+                            <strong>Sede Suba (Occidente):</strong> Atención primaria y consulta externa integral.
+                            <br>
+                            **Dirección:** Calle 145 \# 103B - 12.
+                        </li>
+                        <li>
+                            <strong>Sede Fontibón (Sur Occidente):</strong> Servicios de diagnóstico rápido y terapias ambulatorias.
+                            <br>
+                            **Dirección:** Avenida Centenario (Calle 13) \# 99 - 51.
+                        </li>
+                        <li>
+                            <strong>Sede Usme (Sur):</strong> Centro de atención prioritaria y promoción de la salud.
+                            <br>
+                            **Dirección:** Carrera 14 \# 101 Sur - 20, Barrio Alfonso López.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        
+        <div class="scroll-indicator-container">
+            <div class="scroll-track">
+                <div class="scroll-thumb"></div>
+            </div>
+        </div>
+
+    </main>
+    {% endblock %}  
+    <script src="{% static 'js/Home.js' %}"></script>
+
+</body>
+</html>

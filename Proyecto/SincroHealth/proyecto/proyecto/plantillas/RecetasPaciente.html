@@ -1,0 +1,42 @@
+{% extends 'HomePacientes.html' %}
+{% load static %}
+
+{% block volver %}
+<a href="{% url 'homepacientes' %}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/RecetasPacientes.css' %}">
+
+<div class="contenedor-recetas">
+    <h1 class="titulo-seccion">Recetas Médicas</h1>
+    <div class="contenedor-tabla">
+        <table class="tabla-recetas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for receta in recetas %}
+                <tr>
+                    <td>{{ receta.idrecetas_medicas }}</td>
+                    <td>{{ receta.idcitas_medicas.fecha }}</td>
+                    <td>{{ receta.diagnostico|truncatewords:10 }}</td>
+                    <td>
+                        <a href="{% url 'ver_receta_paciente' receta.idrecetas_medicas %}?volver={% url 'recetas_paciente' paciente.idpaciente %}" class="btn-ver">Ver</a>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="sin-recetas">No hay recetas registradas.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

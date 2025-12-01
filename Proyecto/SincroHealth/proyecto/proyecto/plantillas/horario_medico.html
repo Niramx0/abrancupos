@@ -1,0 +1,33 @@
+{% extends "HomeMedicos.html" %}
+{% load static %}
+
+{% block title %}Horario del Médico{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/HorarioMedico.css' %}">
+{% endblock %}
+
+{% block volver %}
+<a href="{% url 'homemedicos' %}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<div class="horario-container">
+    {% for fecha, citas in dias.items %}
+        <h3>{{ fecha|date:"l d-m-Y" }}</h3>
+        <table>
+            <tr><th>Hora</th><th>Paciente</th><th>Estado</th></tr>
+            {% for cita in citas %}
+            <tr>
+                <td>{{ cita.hora }}</td>
+                <td>{{ cita.idpaciente.nombre }} {{ cita.idpaciente.apellidos }}</td>
+                <td>{{ cita.estado_cita }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3" style="text-align:center;">No hay citas programadas</td></tr>
+            {% endfor %}
+        </table>
+        <hr>
+    {% endfor %}
+</div>
+{% endblock %}

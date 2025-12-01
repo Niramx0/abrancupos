@@ -1,0 +1,78 @@
+{% extends "HomeMedicos.html" %}
+{% load static %}
+
+{% block title %}Crear Receta Médica{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/CrearRecetaMedico.css' %}">
+{% endblock %}
+
+{% block volver %}
+<a href="{% url 'seleccionar_paciente_receta' %}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<div class="crear-receta-wrapper">
+    <h1>Nueva Receta Médica</h1>
+
+    {% if errores %}
+        <div class="errores">
+            <ul>
+            {% for e in errores %}
+                <li>{{ e }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <form method="post" class="form-receta">
+        {% csrf_token %}
+        <div class="encabezado">
+            <div class="campo">
+                <label>Fecha</label>
+                <input type="text" readonly value="{% if cita_prefill %}{{ cita_prefill.fecha }}{% endif %}">
+            </div>
+            <div class="campo">
+                <label>Hora</label>
+                <input type="text" readonly value="{% if cita_prefill %}{{ cita_prefill.hora }}{% endif %}">
+            </div>
+            <div class="campo paciente">
+                <label>Paciente</label>
+                <input type="text" readonly value="{% if cita_prefill %}{{ cita_prefill.idpaciente.nombre }} {{ cita_prefill.idpaciente.apellidos }}{% else %}Seleccione una cita{% endif %}">
+            </div>
+        </div>
+        <div class="select-cita">
+            <label for="cita">Seleccionar cita</label>
+            <select name="cita" id="cita">
+                <option value="">-- Seleccione una cita --</option>
+                {% for c in citas %}
+                <option value="{{ c.idcitas_medicas }}"
+                    {% if form and form.cita and form.cita|stringformat:"s" == c.idcitas_medicas|stringformat:"s" %}selected{% endif %}
+                    {% if not form and cita_prefill and c.idcitas_medicas == cita_prefill.idcitas_medicas %}selected{% endif %}>
+                    {{ c.fecha }} - {{ c.hora }} | {{ c.idpaciente.nombre }} {{ c.idpaciente.apellidos }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="columnas">
+            <div class="col">
+                <label>Diagnóstico</label>
+                <textarea name="diagnostico" rows="8">{% if form %}{{ form.diagnostico }}{% endif %}</textarea>
+            </div>
+            <div class="col">
+                <label>Medicamentos</label>
+                <textarea name="medicamentos" rows="8">{% if form %}{{ form.medicamentos }}{% endif %}</textarea>
+            </div>
+            <div class="col">
+                <label>Indicaciones</label>
+                <textarea name="indicaciones" rows="8">{% if form %}{{ form.indicaciones }}{% endif %}</textarea>
+            </div>
+        </div>
+
+        <div class="acciones-form">
+            <a href="{% url 'seleccionar_paciente_receta' %}" class="btn-editar">Cancelar</a>
+            <button type="submit" class="btn-guardar">Guardar Receta</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

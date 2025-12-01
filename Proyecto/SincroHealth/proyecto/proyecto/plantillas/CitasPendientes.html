@@ -1,0 +1,45 @@
+{% extends 'Home.html' %}
+{% load static %}
+
+{% block content %}
+<main class="content-container">
+	<div class="container" style="max-width:900px; margin:40px auto;">
+		<h2 style="text-align:center; margin-bottom:20px;">Citas Pendientes</h2>
+
+		{% if citas and citas.count %}
+			<table style="width:100%; border-collapse:collapse;">
+				<thead>
+					<tr style="background:#f2f2f2; text-align:left;">
+						<th style="padding:10px;">Fecha</th>
+						<th style="padding:10px;">Hora</th>
+						<th style="padding:10px;">Especialidad</th>
+						<th style="padding:10px;">Médico</th>
+						<th style="padding:10px;">Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for cita in citas %}
+					<tr style="border-top:1px solid #eee;">
+						<td style="padding:10px;">{{ cita.fecha }}</td>
+						<td style="padding:10px;">{{ cita.hora }}</td>
+						<td style="padding:10px;">{{ cita.especialidad }}</td>
+						<td style="padding:10px;">{% if cita.idmedico %}{{ cita.idmedico.nombre }} {{ cita.idmedico.apellidos }}{% else %}Sin asignar{% endif %}</td>
+						<td style="padding:10px;">
+							<a href="{% url 'cancelaraplazarcitas' %}" class="accion-btn" style="padding:6px 10px; background:#e5a89d; color:white; border-radius:6px; text-decoration:none;">Cancelar / Aplazar</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			<div style="background:#eef7ff; padding:20px; border-radius:8px; text-align:center;">
+				No tienes citas pendientes.
+			</div>
+		{% endif %}
+
+		<div style="margin-top:20px; text-align:right;">
+			<a href="{% url 'homepacientes' %}" style="padding:10px 16px; background:#bbb; color:white; text-decoration:none; border-radius:6px;">Volver</a>
+		</div>
+	</div>
+</main>
+{% endblock %}

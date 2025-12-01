@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Pacientes</title>
+    <link rel="stylesheet" href="{% static 'css/HomePacientes.css' %}">
+</head>
+
+<body>
+
+<div class="homepacientes-container">
+
+    <!-- SECCIÓN PERFIL -->
+    <section class="perfil-section">
+        <div class="perfil-avatar">
+            <img src="{% static 'img/avatar.png' %}" alt="avatar">
+        </div>
+
+        <div class="perfil-info">
+            <h2>{{ paciente.nombre }} {{ paciente.apellidos }}</h2>
+            <p class="perfil-datos">{{ paciente.correo_electronico }} - {{ paciente.telefono }}</p>
+
+                <div class="perfil-botones">
+            {% block volver %}
+            <a href="{% url 'home' %}" class="btn-editar">Volver</a>
+            {% endblock %}
+            <a href="{% url 'editar_perfil_paciente' %}" class="btn-editar">Editar Perfil</a>
+        </div>
+        </div>
+    </section>
+
+    {% block content %}   
+    <!-- SECCIÓN ACCIONES -->
+    <section class="acciones-section">
+        <div class="acciones-grid">
+
+            <a href="{% url 'agendarcitas' %}" class="accion-btn">Agendar Citas</a>
+
+            <a href="{% url 'cancelaraplazarcitas' %}" class="accion-btn">Cancelar / Aplazar Citas</a>
+
+            <a href="{% url 'citas_pendientes' %}" class="accion-btn">Citas Pendientes</a> 
+
+            <a href="{% url 'historial_html'  paciente.idpaciente %}" class="accion-btn">Historial Médico</a>
+
+            <a href="{% url 'recetas_paciente' paciente.idpaciente %}" class="accion-btn">Recetas Médicas</a>
+
+        </div>
+    </section>
+    {% endblock %}
+    {% block panel %}
+{% endblock %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "HomeMedicos.html" %}
+{% load static %}
+
+{% block volver %}
+<a href="{{ volver_url }}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/VerReceta.css' %}">
+
+<div class="contenedor-receta">
+    <h1 class="titulo">Receta Médica</h1>
+
+    <p><strong>Paciente:</strong> {{ receta_paciente.nombre }} {{ receta_paciente.apellidos }}</p>
+    <p><strong>Médico:</strong> {{ receta_medico.nombre }} {{ receta_medico.apellidos }}</p>
+    <p><strong>Fecha:</strong> {{ receta.idcitas_medicas.fecha }}</p>
+
+    <h3 class="subtitulo">Medicamentos:</h3>
+    <p>{{ receta.medicamentos }}</p>
+
+    <h3 class="subtitulo">Indicaciones:</h3>
+    <p>{{ receta.indicaciones }}</p>
+
+    <a class="btn-descargar" href="{% url 'descargar_receta' receta.idrecetas_medicas %}">
+        Descargar PDF
+    </a>
+</div>
+{% endblock %}

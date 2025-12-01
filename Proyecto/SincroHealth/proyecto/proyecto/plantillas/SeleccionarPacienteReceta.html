@@ -1,0 +1,85 @@
+{% extends "HomeMedicos.html" %}
+{% load static %}
+
+{% block title %}Seleccionar Paciente para Receta{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/SeleccionarPacienteReceta.css' %}">
+{% endblock %}
+
+{% block volver %}
+<a href="{% url 'homemedicos' %}" class="btn-editar">Volver</a>
+{% endblock %}
+
+{% block content %}
+<div class="contenedor-seleccionar">
+
+    {% if messages %}
+    <div id="toast-container">
+        {% for message in messages %}
+        <div class="toast {{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <h1>Seleccionar paciente</h1>
+    <p>Elige la cita sobre la que deseas crear una nueva receta médica.</p>
+
+    <div class="tabla-pacientes">
+        <table class="tabla-seleccionar">
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Última cita</th>
+                    <th>Hora</th>
+                    <th class="col-accion">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in pacientes_info %}
+                <tr>
+                    <td>{{ item.paciente.nombre }} {{ item.paciente.apellidos }}</td>
+                    <td>
+                        {% if item.ultima_cita %}
+                            {{ item.ultima_cita.fecha|date:"d-m-Y" }}
+                        {% else %}
+                            Sin citas
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if item.ultima_cita %}
+                            {{ item.ultima_cita.hora }}
+                        {% endif %}
+                    </td>
+                    <td class="col-accion">
+                        {% if item.ultima_cita %}
+                        <a href="{% url 'crear_receta_desde_cita' item.ultima_cita.idcitas_medicas %}"
+                           class="btn-crear">
+                           Crear Receta
+                        </a>
+                        {% else %}
+                        <span style="color:#888">No hay cita</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="4">No hay pacientes asignados.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const toasts = document.querySelectorAll(".toast");
+        toasts.forEach(t => {
+            t.addEventListener("animationend", () => t.remove());
+        });
+    });
+</script>
+{% endblock %}
+

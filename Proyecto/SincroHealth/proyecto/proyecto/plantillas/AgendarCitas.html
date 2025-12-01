@@ -1,0 +1,89 @@
+{% extends 'HomePacientes.html' %}
+{% load static %}
+{% block volver %}
+<a href="{% url 'homepacientes' %}" class="btn-editar">Volver</a>
+{% endblock %}
+{% block content %}
+
+<div class="agendarcitas-container">
+
+    <h2 class="agendarcitas-titulo">Agendar Cita Médica</h2>
+
+    {% if exito %}
+        <p class="mensaje-exito"> {{ exito }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p class="mensaje-error"> {{ error }}</p>
+    {% endif %}
+
+    <form method="POST" class="agendarcitas-form">
+        {% csrf_token %}
+
+        <label class="agendarcitas-label">Especialidad</label>
+        <select name="especialidad" id="especialidad-select" class="agendarcitas-select" required>
+            <option value="">Seleccione una especialidad</option>
+
+            {% for esp in especialidades %}
+                <option value="{{ esp }}">{{ esp }}</option>
+            {% endfor %}
+        </select>
+
+        <label class="agendarcitas-label">Fecha</label>
+        <input type="date" name="fecha" class="agendarcitas-input" min="{{ hoy }}" required>
+
+        <label class="agendarcitas-label">Hora</label>
+        <select name="hora" required>
+            {% for hora, disponible in horas %}
+                {% if disponible %}
+                    <option value="{{ hora }}">{{ hora }}</option>
+                {% else %}
+                    <option value="{{ hora }}" disabled style="color: gray;">
+                        {{ hora }} — No disponible
+                    </option>
+                {% endif %}
+            {% endfor %}
+        </select>
+
+
+            <label class="agendarcitas-label">Médico</label>
+            <select name="medico" id="medico-select" class="agendarcitas-select" required>
+                <option value="">Seleccione un médico</option>
+
+                {% for m in medicos %}
+                    <option value="{{ m.idmedico }}" data-especialidad="{{ m.especialidad }}">
+                        {{ m.nombre }} {{ m.apellido }}
+                    </option>
+                {% endfor %}
+            </select>
+
+        <button class="agendarcitas-btn">Confirmar Asignación</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+
+        const especialidadSelect = document.getElementById("especialidad-select");
+        const medicoSelect = document.getElementById("medico-select");
+
+        const medicosOriginales = Array.from(medicoSelect.options).slice(1);
+
+        especialidadSelect.addEventListener("change", function () {
+            const seleccion = this.value;
+
+            medicoSelect.innerHTML = '<option value="">Seleccione un médico</option>';
+
+            if (seleccion === "") return;
+
+            medicosOriginales.forEach(opt => {
+                if (opt.getAttribute("data-especialidad") === seleccion) {
+                    medicoSelect.appendChild(opt.cloneNode(true));
+                }
+            });
+        });
+
+    }); 
+</script>
+
+{% endblock %}

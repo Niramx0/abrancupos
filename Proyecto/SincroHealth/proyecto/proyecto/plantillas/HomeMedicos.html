@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home Médicos{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/HomeMedicos.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+<div class="homemedicos-container">
+
+    <section class="perfil-section">
+        <div class="perfil-avatar">
+            <img src="{% static 'img/avatar.png' %}" alt="avatar">
+        </div>
+
+        <div class="perfil-info">
+            <h2>{{ medico.nombre }} {{ medico.apellidos }}</h2>
+            <p class="perfil-datos">{{ medico.correo_electronico }} - {{ medico.telefono }}</p>
+
+            <div class="perfil-botones">
+                {% block volver %}
+                <a href="{% url 'home' %}" class="btn-editar">Volver</a>
+                {% endblock %}
+                <a href="{% url 'editar_perfil_medico' %}" class="btn-editar">Editar Perfil</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="acciones-section">
+        {% block content %}
+        <div class="acciones-grid">
+
+            <a href="{% url 'horario_medico' medico.idmedico %}" class="accion-btn">Calendario</a>
+            <a href="{% url 'pacientes_medico' %}" class="accion-btn">Consultar Historial Médico</a>
+            <a href="{% url 'seleccionar_paciente_receta' %}" class="accion-btn">Crear Receta Médica</a>
+            <a href="{% url 'recetas_medico' %}" class="accion-btn">Historial Recetas Médicas</a>
+
+        </div>
+        {% endblock %}
+    </section>
+
+</div>
+
+
+</body>
+</html>
