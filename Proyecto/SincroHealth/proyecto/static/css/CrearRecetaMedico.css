@@ -1,0 +1,105 @@
+:root {
+    --color-principal: #E3A296;
+    --color-secundario: #E7DCDC;
+    --color-texto: #000;
+    --color-border: #666;
+    --color-hover: #d9897d;
+    --fuente: 'Arial', sans-serif;
+}
+
+.crear-receta-wrapper {
+    max-width: 1100px;
+    margin: 30px auto;
+    background: white;
+    padding: 26px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.crear-receta-wrapper h1 {
+    text-align: left;
+    margin: 0 0 12px 0;
+    font-size: 22px;
+}
+
+.encabezado {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 18px;
+    align-items: center;
+}
+
+.encabezado .campo {
+    flex: 0 0 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.encabezado .campo.paciente { flex: 1; min-width: 260px; }
+
+.encabezado label { font-weight: bold; margin-bottom: 6px; color: var(--color-texto); }
+.encabezado input {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background: #fafafa;
+}
+
+/* selector de cita */
+.select-cita { margin-bottom: 18px; }
+.select-cita label { display:block; font-weight:bold; margin-bottom:6px; }
+.select-cita select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    background: white;
+}
+
+/* columnas tipo mockup */
+.columnas {
+    display: flex;
+    gap: 18px;
+    margin-top: 6px;
+}
+.columnas .col {
+    flex: 1;
+    background: #fbfbfb;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+.columnas label { font-weight: bold; display:block; margin-bottom:8px; }
+.columnas textarea {
+    width: 100%;
+    min-height: 160px;
+    resize: vertical;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    font-family: var(--fuente);
+}
+
+/* acciones */
+.acciones-form {
+    display:flex;
+    gap:12px;
+    justify-content:flex-end;
+    margin-top: 18px;
+}
+
+.btn-guardar {
+    background: var(--color-principal);
+    color: white;
+    border-radius: 20px;
+    padding: 10px 18px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.15s;
+}
+.btn-guardar:hover { background: var(--color-hover); }
+
+/* errores */
+.errores { background: #ffecec; border: 1px solid #f5c2c2; padding: 10px; border-radius: 8px; margin-bottom: 14px; }
+.errores ul { margin: 0; padding-left: 18px; color: #8b0000; }

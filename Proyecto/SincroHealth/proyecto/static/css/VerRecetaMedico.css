@@ -1,0 +1,54 @@
+.receta-container {
+    width: 850px;
+    background: white;
+    padding: 35px;
+    margin: 40px auto;
+    border-radius: 18px;
+    border: 2px solid var(--color-border);
+    box-shadow: 0 0 18px rgba(0,0,0,0.18);
+}
+
+.titulo {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.info-box {
+    background: var(--color-secundario);
+    padding: 18px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+}
+
+.subtitulo {
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.texto-box {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    margin-top: 8px;
+}
+
+.btn-descargar {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 18px;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: .2s;
+}
+
+.btn-descargar:hover {
+    background: #0056b3;
+}

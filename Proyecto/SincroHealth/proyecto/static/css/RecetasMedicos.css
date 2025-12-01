@@ -1,0 +1,82 @@
+:root {
+    --color-principal: #E3A296; 
+    --color-secundario: #E7DCDC;  
+    --color-texto: #000000;
+    --color-border: #666;
+    --color-hover: #d9897d;      
+    --fuente: 'Arial', sans-serif;
+}
+
+body {
+    background: white !important;
+    font-family: var(--fuente);
+}
+
+/* CONTENEDOR GENERAL */
+.contenedor-recetas {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: auto;
+    box-shadow: 0 0 10px #ccc;
+}
+
+/* TITULO SECCION */
+.titulo-seccion {
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.subtitulo-seccion {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* TABLA */
+.contenedor-tabla {
+    margin-top: 20px;
+}
+
+.tabla-medicos {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0,0,0,0.12);
+}
+
+.tabla-medicos th {
+    padding: 12px;
+    background: var(--color-principal);
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
+
+.tabla-medicos td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.tabla-medicos tr:hover {
+    background: var(--color-secundario);
+}
+
+.btn-ver {
+    background: #007bff;
+    padding: 6px 12px;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-ver:hover {
+    background: #0056b3;
+}
+

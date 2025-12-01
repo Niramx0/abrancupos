@@ -1,0 +1,66 @@
+.horario-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+h2, h3 {
+    text-align: center;
+}
+
+.volver-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #4a7dfc;
+    color: white !important;
+    border-radius: 12px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.volver-btn:hover {
+    background: #325cd4;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background: #f5f5f5;
+    font-weight: bold;
+}
+
+tr:hover {
+    background-color: #f1f7ff;
+}
+
+hr {
+    margin: 40px 0;
+    border: none;
+    height: 1px;
+    background: #ddd;
+}
+
+.acciones-section {
+    width: 100%;
+}
+
+.acciones-section h1,
+.acciones-section h2,
+.acciones-section h3 {
+    text-align: center;
+    margin-top: 10px;
+}

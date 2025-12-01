@@ -1,0 +1,126 @@
+:root {
+    --color-principal: #E3A296;
+    --color-secundario: #E7DCDC;
+    --color-texto: #000000;
+    --color-hover: #d9897d;
+    --fuente: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.homemedicos-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* PERFIL: fijo */
+.perfil-section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+.perfil-avatar img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: var(--color-principal);
+    padding: 10px;
+}
+
+.perfil-info {
+    flex: 0 0 400px; /* ancho fijo */
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.perfil-info h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.perfil-datos {
+    color: #444;
+    margin-top: 3px;
+}
+
+.perfil-botones {
+    display: flex;
+    gap: 15px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+/* BOTONES */
+.btn-editar {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 25px;
+    border: 1px solid var(--color-texto);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: bold;
+    background-color: white;
+    transition: 0.2s;
+}
+
+.btn-editar:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+/* ACCIONES */
+.acciones-section {
+    background-color: var(--color-secundario);
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.acciones-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* BOTONES */
+.accion-btn {
+    flex: 0 1 45%;
+    max-width: 350px;
+    min-width: 300px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.accion-btn:hover {
+    background-color: var(--color-principal);
+    color: white;
+}

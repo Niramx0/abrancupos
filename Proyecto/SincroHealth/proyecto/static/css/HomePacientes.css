@@ -1,0 +1,181 @@
+
+:root {
+    --color-principal: #E3A296; 
+    --color-secundario: #E7DCDC;  
+    --color-texto: #000000;
+    --color-border: #666;
+    --color-hover: #d9897d;      
+    --fuente: 'Arial', sans-serif;
+}
+
+body {
+    font-family: var(--fuente);
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+.homepacientes-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.perfil-section {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+.perfil-avatar img {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background-color: var(--color-principal);
+    padding: 10px;
+}
+
+.perfil-botones {
+    display: flex;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+.perfil-info h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.perfil-datos {
+    color: #444;
+    margin-top: 3px;
+}
+
+.btn-editar {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 25px;
+    border: 1px solid var(--color-texto);
+    border-radius: 20px;
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: bold;
+    background-color: white;
+    transition: 0.2s;
+}
+
+.btn-editar:hover {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.acciones-section {
+    background-color: var(--color-secundario);
+    padding: 40px 20px;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.acciones-grid {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center; 
+    align-items: center;
+    gap: 35px;
+    max-width: 100%; 
+    margin: auto;
+}
+
+.accion-btn {
+    flex: 1 1 300px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    height: 70px;
+    background-color: white;
+    border: 1px solid var(--color-texto);
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.accion-btn {
+    max-width: 350px;
+}
+
+/*AGENDAR CITAS*/
+.agendarcitas-container {
+    width: 95%;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
+}
+
+.agendarcitas-titulo {
+    font-size: 26px;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+.agendarcitas-label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.agendarcitas-input,
+.agendarcitas-select {
+    width: 98%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid var(--color-border);
+    font-size: 16px;
+    background: white;
+}
+
+.agendarcitas-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 20px;
+    border: 1px solid var(--color-principal);
+    background: var(--color-principal);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.agendarcitas-btn:hover {
+    opacity: 0.8;
+}
+
+
+.mensaje-exito {
+    color: #0f7d00;
+    background: #ceffd1;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.mensaje-error {
+    color: #b10000;
+    background: #ffd1d1;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+}

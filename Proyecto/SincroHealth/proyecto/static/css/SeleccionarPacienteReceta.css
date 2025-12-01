@@ -1,0 +1,128 @@
+:root {
+    --color-principal: #E3A296;
+    --color-secundario: #E7DCDC;
+    --color-texto: #000;
+    --color-border: #666;
+    --color-hover: #d9897d;
+    --fuente: 'Arial', sans-serif;
+}
+
+/* Contenedor principal */
+.contenedor-seleccionar {
+    max-width: 1000px;
+    margin: 30px auto;
+    background: white;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.contenedor-seleccionar h1 { margin: 0 0 8px 0; }
+.contenedor-seleccionar p { margin: 0 0 18px 0; color:#444; }
+
+/* Tabla general */
+.tabla-seleccionar {
+    width: 100%;
+    border-collapse: collapse;
+}
+.tabla-seleccionar th {
+    background: var(--color-principal);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+.tabla-seleccionar td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+.tabla-seleccionar tr:hover { background: var(--color-secundario); }
+
+/* Ajuste de la columna de acción para que no se expanda */
+.col-accion {
+    text-align: center;
+    width: 120px; /* Evita que la celda se vuelva gigante */
+}
+
+/* Botón base de acción */
+.accion-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid var(--color-border);
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+.accion-btn:hover {
+    background: var(--color-principal);
+    color: white;
+}
+
+/* Botón de "Crear receta" reducido */
+.btn-crear {
+    background-color: var(--color-principal);
+    color: var(--color-texto);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin: 0 auto; /* centro */
+    width: auto;    /* evita expansión */
+}
+.btn-crear:hover {
+    background-color: var(--color-hover);
+}
+
+/* Viejas clases mantenidas pero ya no necesarias (no estorban) */
+.btn-crear-receta {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    width: auto !important;
+}
+
+.btn-crear {
+    text-decoration: none !important;  /* Quita subrayado */
+}
+
+.btn-crear:hover {
+    text-decoration: none !important;
+}
+
+.seleccionar-paciente-container .btn-crear-receta {
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    width: auto !important;
+}
+
+#toast-container {
+    position: fixed;
+    top: 20px;         
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+.toast {
+    background: var(--color-principal);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-weight: bold;
+    margin-bottom: 10px;
+    opacity: 0;
+    animation: fadeInOut 2s forwards;  
+    min-width: 260px;
+    text-align: center;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-20px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-20px); }
+}

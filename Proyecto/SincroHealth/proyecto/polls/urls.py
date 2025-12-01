@@ -1,0 +1,30 @@
+from django.urls import path
+from .views import *
+
+urlpatterns = [
+    path('', home, name='home'),
+    path('LoginPacientes', loginpacientes, name= 'loginpacientes'),
+    path('HomePacientes', homepacientes, name='homepacientes'),
+    path("loginmedicos", loginmedicos, name="loginmedicos"),
+    path("homemedicos",homemedicos, name="homemedicos"), 
+    path("agendarcitas", agendarcitas, name="agendarcitas"), 
+    path("filtrar-medicos", filtrar_medicos, name="filtrar_medicos"),
+    path("cancelaraplazarcitas", cancelar_aplazar_citas, name="cancelaraplazarcitas"),
+    path('Info', info, name='contactanos'), 
+    path("horario/<int:idmedico>/", horario_medico, name="horario_medico"),
+    path("historial/<int:idpaciente>/", vista_historial, name="historial_html"),
+    path("historial/<int:idpaciente>/pdf/", historial_pdf, name="historial_pdf"),
+    path("paciente/<int:idpaciente>/", recetas_paciente, name="recetas_paciente"),
+    path("paciente/receta/<int:idreceta>/", ver_receta_paciente, name="ver_receta_paciente"),
+    path("medico/receta/<int:idreceta>/", ver_receta_medico, name="ver_receta_medico"),
+    path("receta/<int:idreceta>/descargar/", descargar_receta, name="descargar_receta"),  
+    path("medico/recetas/", recetas_medico, name="recetas_medico"),
+    path("medico/pacientes/", pacientes_medico, name="pacientes_medico"),
+    path("medico/paciente/<int:idpaciente>/historial/", historial_paciente_medico, name="historial_paciente_medico"),
+    path("medico/paciente/<int:idpaciente>/historial/pdf/", historial_pdf, name="historial_pdf_medico"),
+    path("medico/seleccionar_paciente_receta/", seleccionar_paciente_receta, name="seleccionar_paciente_receta"),
+    path("medico/crear_receta/<int:cita_id>/", crear_receta, name="crear_receta_desde_cita"),
+    path("paciente/citas-pendientes/", citas_pendientes, name="citas_pendientes"),
+    path("paciente/editar-perfil/", editar_perfil_paciente, name="editar_perfil_paciente"),
+    path("medico/editar-perfil/", editar_perfil_medico, name="editar_perfil_medico"),
+]
