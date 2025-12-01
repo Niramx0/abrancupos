@@ -1,0 +1,229 @@
+<!--
+    Correo
+    Contraseña
+    Dirección
+    Teléfono
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - Paciente</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #e5a89d;
+            padding: 15px 30px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            margin-right: 20px;
+        }
+
+        h2 {
+            margin: 0;
+            font-size: 26px;
+        }
+
+        .form-box {
+            padding: 25px;
+            border: 2px solid #dcdcdc;
+            border-radius: 15px;
+            background-color: #fafafa;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            width: 48%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input {
+            padding: 10px;
+            border: 1.5px solid #999;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .btn-container{
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        .btn-save{
+            padding: 12px 25px;
+            background-color: #e5a89d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-save:hover{
+            background-color: #d98c80;
+        }
+
+        .errors {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .errors ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .errors li {
+            margin: 5px 0;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        Editar Perfil del Paciente
+    </div>
+
+    <div class="container">
+
+        <!-- ENCABEZADO CON ICONO Y NOMBRE -->
+        <div class="profile-header">
+            <div class="avatar">👤</div>
+            <h2>{{apellido_paciente}} {{nombre_paciente}}</h2>
+            
+        </div>
+
+        <!-- ERRORES -->
+        {% if errores %}
+        <div class="errors">
+            <strong>Por favor corrige los siguientes errores:</strong>
+            <ul>
+                {% for error in errores %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- MENSAJES DE ÉXITO -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="success">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <!-- FORMULARIO -->
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-box">
+
+                <div class="form-group">
+                    <div class="field">
+                        <label for="correo">Correo:</label>
+                        <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" value="{{ form.correo|default:correo }}">
+                    </div>
+
+                    <div class="field">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" placeholder="Dirección de residencia" value="{{ form.direccion|default:direccion }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="field">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••">
+                    </div>
+
+                    <div class="field">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" placeholder="Número telefónico" value="{{ form.telefono|default:telefono }}">
+                    </div>
+                </div>
+
+                <div class="btn-container" style="float: left;">
+                    <!-- BOTÓN VOLVER -->
+                    <a href="{% url 'homepacientes' %}" 
+                    style="padding: 12px 25px;
+                            background-color: #bbb;
+                            color: white;
+                            text-decoration: none;
+                            border-radius: 10px;
+                            font-size: 16px;">
+                        Volver
+                    </a>
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn-save" type="submit">Guardar Cambios</button>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+</body>
+</html>
